@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Code translator</title>
+</head>
+<body>
+    <header>
+        <div class="header">
+            <div class="lheader"><h2>Code translator</h2></div>
+            <div class="rheader">
+                <a href="#">Example</a>
+                <a href="#">About</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="app-header">
+        <h1> Code Translator</h1>
+        <p>Turn cryptic, complex code into simple, human-readable analogies. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fugiat necessitatibus quos aliquid dolorum minus expedita assumenda, sunt aut amet quidem debitis cumque cum, consectetur vel impedit adipisci! Voluptatem, eligendi aut?</p>
+    </div>
+
+    <div class="app-container">
+        <main class="box input-box">
+            <div class="box-header">
+                <h2>1. Paste Your Code</h2>
+                <span class="badge">Input</span>
+            </div>
+            
+            <div class="form-group">
+                <label for="code-input">Source Code</label>
+                <textarea id="code-input" placeholder="// Paste your messy or complex code snippet here...\n\nconst data = [1, 2, 3];\nconst result = data.reduce((acc, curr) => acc + curr, 0);"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="persona-select">Target Audience Persona</label>
+                <select id="persona-select">
+                    <option value="5-year-old"> 5-Year-Old (Simple Analogies & Toys)</option>
+                    <option value="product-manager"> Product Manager (Business Value & Outcomes)</option>
+                    <option value="junior-dev"> Junior Developer (Technical Syntax & Logic)</option>
+                    <option value="non-tech-client"> Non-Technical Client (High-level Utility)</option>
+                </select>
+            </div>
+
+            <button id="translate-btn" class="primary-btn">
+                <span>Translate Code</span>
+                <div class="loader hidden"></div>
+            </button>
+        </main>
+
+        <section class="box output-box">
+            <div class="box-header">
+                <h2>2. Simple Explanation</h2>
+                <span class="badge success">AI Output</span>
+            </div>
+            
+            <div class="output-container">
+                <div id="output-placeholder" class="placeholder-text">
+                    <p>Your simplified explanation will stream here in real-time once you hit "Translate Code".</p>
+                </div>
+
+                <div id="output-content" class="markdown-body hidden"></div>
+            </div>
+        </section>
+    </div>
+    
+</body>
+</html>

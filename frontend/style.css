@@ -1,0 +1,256 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+:root {
+    --bg-head: #a8ab87;
+    --bg-app: #f4f6f9;
+    --bg-card: #ffffff;
+    --text-primary: #1e293b;
+    --text-muted: #64748b;
+    --accent: #657245;
+    --accent-hover: #6e7b47;
+    --border-color: #e2e8f0;
+    --success: #10b981;
+}
+
+body {
+    background-color: var(--bg-app);
+    color: var(--text-primary);
+    line-height: 1.5;
+}
+.header{
+    background-color: var(--bg-head);
+    display: flex;
+}
+.lheader{
+    padding: 10px;
+    margin-right: auto;
+}
+.rheader{
+    margin-left: auto;
+    padding: 10px;
+    font-size: 20px;
+    
+}
+a{
+    border: 1px #64748b ;
+    border-radius: 5px;
+    padding: 10px;
+    color: black;
+}
+.app-header {
+    padding: 30px 20px 10px 20px;
+}
+
+.app-header h1 {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 6px;
+}
+
+.app-header p {
+    color: var(--text-muted);
+    font-size: 14px;
+}
+
+.app-container {
+    display: flex;
+    flex-direction: column; 
+    padding: 16px;
+    gap: 20px;
+    min-height: calc(100vh - 100px);
+}
+
+.box {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+}
+
+.input-box, .output-box {
+    min-height: 80vh;
+}
+
+.box-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 12px;
+}
+
+.box-header h2 {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.badge {
+    font-size: 11px;
+    font-weight: 600;
+    background: #eff6ff;
+    color: #2563eb;
+    padding: 4px 8px;
+    border-radius: 6px;
+}
+
+.badge.success {
+    background: #ecfdf5;
+    color: var(--success);
+}
+
+.form-group {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-muted);
+}
+
+textarea {
+    width: 100%;
+    height: 240px;
+    padding: 14px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background-color: #f8fafc;
+    font-family: "Fira Code", Consolas, Monaco, monospace;
+    font-size: 13px;
+    color: #334155;
+    resize: none;
+    outline: none;
+}
+
+textarea:focus, select:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+}
+
+select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background-color: #fff;
+    font-size: 14px;
+    color: var(--text-primary);
+    outline: none;
+    cursor: pointer;
+}
+
+.primary-btn {
+    margin-top: auto; 
+    width: 100%;
+    background-color: var(--accent);
+    color: #fff;
+    border: none;
+    padding: 14px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    transition: background 0.2s;
+}
+
+.primary-btn:hover {
+    background-color: var(--accent-hover);
+}
+
+.primary-btn:disabled {
+    background-color: #a5b4fc;
+    cursor: not-allowed;
+}
+
+.output-container {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.placeholder-text {
+    margin: auto;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 14px;
+    max-width: 280px;
+}
+
+.markdown-body {
+    font-size: 14px;
+    color: #334155;
+}
+
+.markdown-body h3 {
+    margin-bottom: 12px;
+    color: var(--accent);
+}
+
+.markdown-body ul {
+    margin-left: 20px;
+    margin-top: 8px;
+}
+
+.markdown-body li {
+    margin-bottom: 8px;
+}
+
+.loader {
+    width: 18px;
+    height: 18px;
+    border: 2px solid #fff;
+    border-bottom-color: transparent;
+    border-radius: 50%;
+    display: inline-block;
+    animation: rotation 1s linear infinite;
+}
+
+.hidden {
+    display: none !important;
+}
+
+@keyframes rotation {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@media (min-width: 768px) {
+    .app-container {
+        flex-direction: row;
+        height: calc(100vh - 110px); 
+        overflow: hidden;           
+        padding: 24px;
+        gap: 24px;
+    }
+
+    .box {
+        flex: 1;                   
+        height: 100%;              
+        min-height: auto;           
+    }
+
+    textarea {
+        flex-grow: 1;              
+        height: auto;
+    }
+
+    .output-container {
+        overflow-y: auto;         
+        padding-right: 8px;
+    }
+}
