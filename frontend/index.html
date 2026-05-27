@@ -8,74 +8,71 @@
 </head>
 <body>
     <header>
-        <div class="header">
-            <div class="lheader"><h2>Code translator</h2></div>
-            <div class="rheader">
-                <a href="#">Example</a>
-                <a href="#">About</a>
-            </div>
+        <div class="head">
+            <div class="logo"><span class="logob">[ CT ]</span></div>
+            <nav>
+                <a href="about.html">Example</a>
+                <a href="about.html">About</a>
+            </nav>           
         </div>
     </header>
-
-    <div class="app-header">
-        <h1> Code Translator</h1>
-        <p>Turn cryptic, complex code into simple, human-readable analogies. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fugiat necessitatibus quos aliquid dolorum minus expedita assumenda, sunt aut amet quidem debitis cumque cum, consectetur vel impedit adipisci! Voluptatem, eligendi aut?</p>
-    </div>
-
+    <section class="hero">
+        <div class="hero-tag">Code Translator</div>
+        <h1>Turn cryptic code<br><em>into plain English.</em></h1>
+        <p>Paste any snippet get an explanation tailored as your audience.</p>
+    </section>
     <div class="app-container">
-        <main class="box input-box">
-            <div class="box-header">
-                <h2>1. Paste Your Code</h2>
-                <span class="badge">Input</span>
+        <main class="panel input-panel">
+            <div class="panel-label">
+                <span class="step-num"></span>
+                <span>Paste Your Code</span>
             </div>
-            
-            <div class="form-group">
+            <div class="field-group">
                 <label for="code-input">Source Code</label>
-                <textarea id="code-input" placeholder="paste code here "></textarea>
+                <textarea id="code-input" spellcheck="false" placeholder="// paste your code here..."></textarea>
             </div>
-
-            <div class="form-group">
-                <label for="persona-select">Target Audience Persona</label>
+            <div class="field-group">
+                <label for="persona-select">Explain this to a —</label>
                 <select id="persona-select">
-                    <option value="5-year-old"> 5-Year-Old (Simple Analogies & Toys)</option>
-                    <option value="product-manager"> Product Manager (Business Value & Outcomes)</option>
-                    <option value="junior-dev"> Junior Developer (Technical Syntax & Logic)</option>
-                    <option value="non-tech-client"> Non-Technical Client (High-level Utility)</option>
+                    <option value="5-year-old">5-year-old (toys & simple analogies)</option>
+                    <option value="product-manager">Product Manager (business outcomes)</option>
+                    <option value="junior-dev">Junior Developer (syntax & logic)</option>
+                    <option value="non-tech-client">Non-technical Client (high-level utility)</option>
                 </select>
             </div>
-
             <button id="translate-btn" class="primary-btn">
-                <span>Translate Code</span>
+                <span class="btn-text">Translate Code</span>
                 <div class="loader hidden"></div>
+                <span class="btn-arrow">→</span>
             </button>
         </main>
-
-        <section class="box output-box">
-            <div class="box-header">
-                <h2>2. Simple Explanation</h2>
-                <span class="badge success">AI Output</span>
+        <section class="panel output-panel">
+            <div class="panel-label">
+                <span class="step-num"></span>
+                <span>Simple Explanation</span>
             </div>
-            
-            <div class="output-container">
-                <div id="output-placeholder" class="placeholder-text">
-                    <p>Your simplified explanation will stream here in real-time once you hit "Translate Code".</p>
+            <div class="output-area">
+                <div id="output-placeholder" class="placeholder">
+                    <div class="placeholder-icon">⌘</div>
+                    <p>Your explanation will stream here in real-time once you hit <strong>Translate Code</strong>.</p>
                 </div>
-
-                <div id="output-content" class="markdown-body hidden"></div>
+                <div id="output-content" class="output-body hidden"></div>
             </div>
         </section>
     </div>
 
     <footer>
-        <div class="foot">
-            <div class="lfooter"><h2>Gen AI Project</h2></div>
-            <div class="rfooter">
-                <a href="#">Linkndin</a>
-                <a href="#">Mail</a>
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <span class="logo-bracket">[</span>CT<span class="logo-bracket">]</span>
+                Gen AI Project
+            </div>
+            <div class="footer-links">
+                <a href="#">LinkedIn</a>
+                <a href="#">Email</a>
             </div>
         </div>
-        <p>2026 project. all right reserved.</p>
+        <div class="footer-copy">© 2026 — All rights reserved.</div>
     </footer>
-    
 </body>
 </html>
