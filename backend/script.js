@@ -1,0 +1,1 @@
+let halu = value.getelementbyid(code-input)
