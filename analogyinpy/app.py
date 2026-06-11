@@ -4,7 +4,7 @@ from PIL import Image
 
 def configure_gemini(api_key: str) -> genai.GenerativeModel:
     """Configure and return the Gemini model."""
-    genai.configure(api_key=api_key)
+    genai.configure(api_key=api_keey)
     return genai.GenerativeModel(
         "gemini-2.0-flash-lite",
         generation_config=genai.GenerationConfig(
@@ -16,7 +16,7 @@ def configure_gemini(api_key: str) -> genai.GenerativeModel:
 api_key = "Enter Your API Key"
 
 try:
-    model = configure_gemini(api_key)
+    model = configure_gemini(api_keey)
 except Exception as e:
     st.error(f"Failed to configure Gemini: {e}")
     st.stop()
