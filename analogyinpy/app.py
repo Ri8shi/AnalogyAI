@@ -3,7 +3,6 @@ import google.generativeai as genai
 from PIL import Image
 
 def configure_gemini(api_key: str) -> genai.GenerativeModel:
-    """Configure and return the Gemini model."""
     genai.configure(api_key=api_keey)
     return genai.GenerativeModel(
         "gemini-2.0-flash-lite",
@@ -23,7 +22,6 @@ except Exception as e:
 
 
 def build_code_prompt(code: str, audience: str, optional: str) -> str:
-    """Build explanation prompt for code input."""
     ctx = f" Context: {optional}" if optional.strip() else ""
     return f"""Explain this code briefly for a {audience}.{ctx} Be concise, use markdown.
 ```
@@ -31,12 +29,10 @@ def build_code_prompt(code: str, audience: str, optional: str) -> str:
 ```"""
 
 def build_image_prompt(audience: str, optional: str) -> str:
-    """Build explanation prompt for image input."""
     ctx = f" Context: {optional}" if optional.strip() else ""
     return f"""Explain the code in this image briefly for a {audience}.{ctx} Be concise, use markdown."""
 
 def build_cni_prompt(code: str, audience: str, optional: str) -> str:
-    """Build explanation prompt for combined code + image input."""
     ctx = f" Context: {optional}" if optional.strip() else ""
     code_block = f"\n```\n{code}\n```" if code.strip() else ""
     return f"""Explain the code (pasted + image) briefly for a {audience}.{ctx} Be concise, use markdown.{code_block}"""
