@@ -12,6 +12,7 @@ def configure_gemini(api_key: str) -> genai.GenerativeModel:
         ),
     )
 
+api_keey="enter your api key"
 
 try:
     model = configure_gemini(api_keey)
