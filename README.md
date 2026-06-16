@@ -5,6 +5,9 @@ This project helps users understand complex concepts using intelligent analogies
 
 ---
 
+## Visit app
+https://repo-explainer-test.streamlit.app/
+
 ## Features
 
 * Generate analogies for technical and non-technical concepts
@@ -121,6 +124,7 @@ http://localhost:8501
 ---
 
 ## Screenshot
+<img width="1365" height="589" alt="Screenshot 2026-06-15 084143" src="https://github.com/user-attachments/assets/17f16603-636a-4b12-a265-98de087011b2" />
 
 
 
