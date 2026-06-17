@@ -6,7 +6,7 @@ This project helps users understand complex concepts using intelligent analogies
 ---
 
 ## Visit app
-https://repo-explainer-test.streamlit.app/
+https://anlogy-ai.streamlit.app/
 
 ## Features
 
