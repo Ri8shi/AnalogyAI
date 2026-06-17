@@ -212,12 +212,12 @@ def compute_local_stats(all_file_stats):
 
 def setup_page():
     st.set_page_config(
-        page_title="Repo Explainer",
+        page_title="Anlogy AI",
         layout="wide",
     )
 
 def render_header():
-    st.title("Repo Explainer")
+    st.title("Anlogy AI")
     st.caption("Drop a GitHub link or ZIP file get an AI powered explanation in seconds")
 
 def render_metrics(tree, files, all_file_stats, prompt_len):
