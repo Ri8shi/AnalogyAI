@@ -9,7 +9,6 @@ from pathlib import Path
 from io import BytesIO
 from collections import Counter
 
-API_KEY = "enter your api key"
 
 SKIP_DIRS = {
     ".git", "node_modules", "__pycache__", ".venv", "venv", "env",
@@ -47,8 +46,8 @@ EXT_TO_LANG = {
 }
 
 @st.cache_resource
-def get_model():
-    genai.configure(api_key=API_KEY)
+def get_model(api_key: str):
+    genai.configure(api_key=api_key)
     return genai.GenerativeModel(
         "gemini-2.0-flash",
         generation_config=genai.GenerationConfig(
@@ -290,7 +289,7 @@ def process_repo(zip_bytes: bytes, repo_name: str):
         with st.spinner("Generating AI explanation..."):
             try:
                 t0 = time.time()
-                model = get_model()
+                model = get_model(st.session_state["gemini_api_key"])
                 response = model.generate_content(prompt)
                 elapsed = time.time() - t0
                 explanation = response.text
@@ -312,6 +311,23 @@ def process_repo(zip_bytes: bytes, repo_name: str):
 def main():
     setup_page()
     render_header()
+
+    with st.sidebar:
+        st.header("API Configuration")
+        api_key_input = st.text_input(
+            "Gemini API Key",
+            type="password",
+            placeholder="Paste your Gemini API key",
+            help="Get a free key at https://aistudio.google.com/app/apikey",
+            key="api_key_input",
+        )
+        if api_key_input:
+            st.session_state["gemini_api_key"] = api_key_input
+            st.success("API key set for this session")
+
+    if not st.session_state.get("gemini_api_key"):
+        st.info("Enter your Gemini API key in the sidebar to get started.")
+        st.stop()
 
     tab_url, tab_zip = st.tabs(["GitHub URL", "Upload ZIP"])
 
