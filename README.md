@@ -83,8 +83,9 @@ Create a `.env` file in the root directory.
 GOOGLE_API_KEY=your_api_key_here
 ```
 
-Get your API key from Google AI Studio.
-https://aistudio.google.com/api-keys
+Get your API key from <a href="https://aistudio.google.com/api-keys" target="_blank">Google AI Studio.</a>
+
+
 
 ---
 
@@ -125,7 +126,7 @@ http://localhost:8501
 
 ## Screenshot
 <img width="1365" height="589" alt="Screenshot 2026-06-15 084143" src="https://github.com/user-attachments/assets/17f16603-636a-4b12-a265-98de087011b2" />
-
+old image, new feature implemented now user can use there own api to run the app
 
 
 ## License
@@ -139,5 +140,4 @@ Developed by Rishi Nagde
 
 Contact: nagderishi@gmail.com
 
-Linkedin: https://www.linkedin.com/in/rishi-nagde
-
+<a href="https://www.linkedin.com/in/rishi-nagde" target="_blank">Linkedin</a>
