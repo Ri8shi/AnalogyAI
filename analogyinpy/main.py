@@ -1,5 +1,6 @@
 import streamlit as st
 import google.generativeai as genai
+from groq import Groq
 import requests
 import zipfile
 import tempfile
@@ -56,6 +57,10 @@ def get_model(api_key: str):
         ),
         system_instruction="Senior engineer. Explain repos concisely. Markdown, bullets.",
     )
+
+@st.cache_resource
+def get_groq_client(api_key: str):
+    return Groq(api_key=api_key)
 
 def parse_github_url(url: str):
     url = url.strip().rstrip("/")
@@ -289,12 +294,28 @@ def process_repo(zip_bytes: bytes, repo_name: str):
         with st.spinner("Generating AI explanation..."):
             try:
                 t0 = time.time()
-                model = get_model(st.session_state["gemini_api_key"])
-                response = model.generate_content(prompt)
+                provider = st.session_state.get("selected_provider", "Gemini")
+
+                if provider == "Groq":
+                    client = get_groq_client(st.session_state["groq_api_key"])
+                    chat = client.chat.completions.create(
+                        model="llama-3.3-70b-versatile",
+                        messages=[
+                            {"role": "system", "content": "Senior engineer. Explain repos concisely. Markdown, bullets."},
+                            {"role": "user", "content": prompt},
+                        ],
+                        max_tokens=800,
+                        temperature=0.2,
+                    )
+                    explanation = chat.choices[0].message.content
+                else:
+                    model = get_model(st.session_state["gemini_api_key"])
+                    response = model.generate_content(prompt)
+                    explanation = response.text
+
                 elapsed = time.time() - t0
-                explanation = response.text
             except Exception as e:
-                st.error(f"Gemini API error: {e}")
+                st.error(f"{provider} API error: {e}")
                 return
 
     st.markdown("---")
@@ -314,19 +335,44 @@ def main():
 
     with st.sidebar:
         st.header("API Configuration")
-        api_key_input = st.text_input(
-            "Gemini API Key",
-            type="password",
-            placeholder="Paste your Gemini API key",
-            help="Get a free key at https://aistudio.google.com/app/apikey",
-            key="api_key_input",
-        )
-        if api_key_input:
-            st.session_state["gemini_api_key"] = api_key_input
-            st.success("API key set for this session")
 
-    if not st.session_state.get("gemini_api_key"):
+        provider = st.radio(
+            "Choose AI Provider",
+            ["Gemini", "Groq"],
+            key="provider_select",
+        )
+
+        if provider == "Gemini":
+            api_key_input = st.text_input(
+                "Gemini API Key",
+                type="password",
+                placeholder="Paste your Gemini API key",
+                help="Get a free key at https://aistudio.google.com/app/apikey",
+                key="gemini_key_input",
+            )
+            if api_key_input:
+                st.session_state["gemini_api_key"] = api_key_input
+                st.success("Gemini API key set ✓")
+        else:
+            api_key_input = st.text_input(
+                "Groq API Key",
+                type="password",
+                placeholder="Paste your Groq API key",
+                help="Get a free key at https://console.groq.com/keys",
+                key="groq_key_input",
+            )
+            if api_key_input:
+                st.session_state["groq_api_key"] = api_key_input
+                st.success("Groq API key set ✓")
+
+        st.session_state["selected_provider"] = provider
+
+    provider = st.session_state.get("selected_provider", "Gemini")
+    if provider == "Gemini" and not st.session_state.get("gemini_api_key"):
         st.info("Enter your Gemini API key in the sidebar to get started.")
+        st.stop()
+    elif provider == "Groq" and not st.session_state.get("groq_api_key"):
+        st.info("Enter your Groq API key in the sidebar to get started.")
         st.stop()
 
     tab_url, tab_zip = st.tabs(["GitHub URL", "Upload ZIP"])
